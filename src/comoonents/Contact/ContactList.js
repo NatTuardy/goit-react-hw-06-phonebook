@@ -29,9 +29,14 @@ const ContactList = ({ contacts, onDeleteContact }) => {
 };
 
 const mapStateToProps = state => ({
-  contacts: state.contacts.items.filter(contact =>
-    contact.name.toLowerCase().includes(state.contacts.filter.toLowerCase()),
-  ),
+  contacts:
+    state.contacts.items.length >= 2
+      ? state.contacts.items.filter(contact =>
+          contact.name
+            .toLowerCase()
+            .includes(state.contacts.filter.toLowerCase()),
+        )
+      : state.contacts.items,
 });
 
 const mapDispatchToProps = {
